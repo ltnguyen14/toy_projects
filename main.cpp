@@ -34,7 +34,7 @@ int main() {
   printf("\n");
 
   if (headerCheck) {
-    printf("Signature is correct.\n");
+    printf("Signature is correct.\n\n");
   } else {
     printf("Signature is INCORRECT.\n");
     return -1;
@@ -46,11 +46,10 @@ int main() {
   chunkType[4] = '\0';
   byte crc[4];
 
-  s32 test = 0;
-  while(strcmp((const char*)chunkType, "IEND") != 0 && test < 10) {
-    test++;
+  printf("=============\n");
+  while (strcmp((const char *)chunkType, "IEND") != 0) {
     fread(&chunkLength, 4, 1, f);
-    reverseBytes((byte*)&chunkLength, 4);
+    reverseBytes((byte *)&chunkLength, 4);
 
     fread(chunkType, 4, 1, f);
 
@@ -62,7 +61,6 @@ int main() {
     printf("Chunk Length: %u\n", chunkLength);
 
     printf("=============\n");
-
   }
 }
 
@@ -70,7 +68,7 @@ void reverseBytes(byte *data, s32 byteCount) {
   byte temp;
   for (s32 i = 0; i < byteCount / 2; i++) {
     temp = data[i];
-    data[i] = data[byteCount - i];
-    data[byteCount - 1] = temp;
+    data[i] = data[byteCount - i - 1];
+    data[byteCount - i - 1] = temp;
   }
 }
