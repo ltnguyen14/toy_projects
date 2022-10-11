@@ -2,7 +2,7 @@
 
 #include "fstream"
 #include "stdio.h"
-#include "typedefs.hpp"
+#include "../typedefs.hpp"
 
 void reverseBytes(byte *data, s32 size);
 void ParseHeaderInfo(byte *data);
